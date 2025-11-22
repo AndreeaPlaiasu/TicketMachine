@@ -37,3 +37,10 @@ class TicketMachine {
         }
     }
 }
+
+
+class LoginSystem{
+    private val users = listOf(User("admin", "admin123"))
+    var isLoggedIn = false
+
+}
