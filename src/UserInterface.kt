@@ -1,3 +1,5 @@
+import java.util.Scanner
+
 class UserInterface(private val machine: TicketMachine) {
     private val scanner = Scanner(System.`in`)
 
