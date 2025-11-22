@@ -8,3 +8,8 @@ data class Destination(
         salesCount++
     }
 }
+
+data class User(
+    val username: String,
+    val password: String
+)
