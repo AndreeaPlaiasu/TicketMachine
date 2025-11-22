@@ -43,7 +43,7 @@ class LoginSystem{
     private val users = listOf(User("admin", "admin123"))
     var isLoggedIn = false
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String): Boolean {
         for (user in users){
             if (user.username == username && user.password == password){
                 isLoggedIn = true
