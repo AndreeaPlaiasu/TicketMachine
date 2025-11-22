@@ -54,4 +54,8 @@ class LoginSystem{
         println("Logged in failed!")
         return false
     }
+    fun logout() {
+        isLoggedIn = false
+        println("Logged out!")
+    }
 }
