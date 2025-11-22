@@ -13,3 +13,11 @@ data class User(
     val username: String,
     val password: String
 )
+
+data class SpecialOffers(
+    val id: Int,
+    val stationName: String,
+    val discount: Double,
+    val startDate: String,
+    val endDate: String
+)
