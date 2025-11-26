@@ -39,29 +39,14 @@ class TicketMachine {
 }
 
 
-class LoginSystem{
+class LoginSystem {
     private val users = listOf(User("admin", "admin123"))
     var isLoggedIn = false
 
-    fun login(username: String, password: String): Boolean {
-        for (user in users){
-            if (user.username == username && user.password == password){
-                isLoggedIn = true
-                println("Logged in successfully!")
-                return true
-            }
-        }
-        println("Logged in failed!")
-        return false
-    }
-    fun logout() {
-        isLoggedIn = false
-        println("Logged out!")
-    }
+    val offers = mutableListOf<SpecialOffer>()
+    var offerId = 1
 
+    fun login(user: String, pass: String): Boolean {
+        return user == "admin" && pass == "admin123"
+    }
 }
-class SpecialOffers{
-    private val offers = mutableListOf<SpecialOffers>()
-    private var nextId = 1
-}
-
