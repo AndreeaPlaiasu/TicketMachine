@@ -37,11 +37,4 @@ class TicketMachine {
         }
     }
 
-
-    val offers = mutableListOf<SpecialOffer>()
-    var offerId = 1
-
-    fun login(user: String, pass: String): Boolean {
-        return user == "admin" && pass == "admin123"
-    }
 }
