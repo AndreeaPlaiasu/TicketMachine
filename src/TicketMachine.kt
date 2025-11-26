@@ -58,4 +58,10 @@ class LoginSystem{
         isLoggedIn = false
         println("Logged out!")
     }
+
 }
+class SpecialOffers{
+    private val offers = mutableListOf<SpecialOffers>()
+    private var nextId = 1
+}
+
