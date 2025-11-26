@@ -14,10 +14,10 @@ data class User(
     val password: String
 )
 
-data class SpecialOffers(
+data class SpecialOffer(
     val id: Int,
-    val stationName: String,
+    val station: String,
     val discount: Double,
-    val startDate: String,
-    val endDate: String
+    val start: String,
+    val end: String
 )

@@ -38,3 +38,34 @@ class TicketMachine {
     }
 
 }
+
+val offers = mutableListOf<SpecialOffer>()
+var offerId = 1
+
+fun checkLogin(user: String, pass: String): Boolean {
+    return user == "admin" && pass == "admin123"
+}
+
+fun addOffer(station: String, discount: Double, start: String, end: String) {
+    offers.add(SpecialOffer(offerId++, station, discount, start, end))
+    println("Offer added!")
+}
+
+fun viewOffers() {
+    if (offers.isEmpty()) println("No offers.")
+    for (o in offers) println("${o.id}. ${o.station} - ${o.discount}% off (${o.start} to ${o.end})")
+}
+
+fun searchOffers(station: String) {
+    for (o in offers) {
+        if (o.station.contains(station, true)) {
+            println("${o.id}. ${o.station} - ${o.discount}% off")
+        }
+    }
+}
+
+fun deleteOffer(id: Int) {
+    offers.removeIf { it.id == id }
+    println("Deleted.")
+}
+
