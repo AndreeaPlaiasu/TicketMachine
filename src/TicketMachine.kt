@@ -36,12 +36,7 @@ class TicketMachine {
             null
         }
     }
-}
 
-
-class LoginSystem {
-    private val users = listOf(User("admin", "admin123"))
-    var isLoggedIn = false
 
     val offers = mutableListOf<SpecialOffer>()
     var offerId = 1
