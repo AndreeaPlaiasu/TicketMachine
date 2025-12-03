@@ -31,6 +31,26 @@ class UserInterface(private val machine: TicketMachine) {
         }
     }
 
+    fun adminMenu() {
+        while (true) {
+            println("\n--- ADMIN MENU ---")
+            println("1. View offers")
+            println("2. Add offer")
+            println("3. Search offers")
+            println("4. Delete offer")
+            println("5. Logout")
+            print("Choose option: ")
+
+            when (scanner.nextLine().trim()) {
+                "1" -> viewOffers()
+                "2" -> addOfferMenu()
+                "3" -> searchOfferMenu()
+                "4" -> deleteOfferMenu()
+                "5" -> return
+                else -> println("Invalid option.")
+            }
+        }
+    }
     fun adminLogin() {
         print("Username: ")
         val user = scanner.nextLine()
