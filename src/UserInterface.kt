@@ -30,4 +30,19 @@ class UserInterface(private val machine: TicketMachine) {
             ticket.printTicket()
         }
     }
+
+    fun adminLogin() {
+        print("Username: ")
+        val user = scanner.nextLine()
+        print("Password: ")
+        val pass = scanner.nextLine()
+
+        if (checkLogin(user, pass)) {
+            println("Login successful!")
+            adminMenu()
+        } else {
+            println("Invalid credentials.")
+        }
+    }
+
 }
