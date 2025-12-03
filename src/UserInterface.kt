@@ -44,12 +44,25 @@ class UserInterface(private val machine: TicketMachine) {
             when (scanner.nextLine().trim()) {
                 "1" -> viewOffers()
                 "2" -> addOfferMenu()
-                "3" -> searchOfferMenu()
-                "4" -> deleteOfferMenu()
+              /*  "3" -> searchOfferMenu()
+                "4" -> deleteOfferMenu()*/
                 "5" -> return
                 else -> println("Invalid option.")
             }
         }
+    }
+
+    fun addOfferMenu() {
+        print("Station: ")
+        val station = scanner.nextLine()
+        print("Discount (%): ")
+        val discount = scanner.nextLine().toDouble()
+        print("Start date: ")
+        val start = scanner.nextLine()
+        print("End date: ")
+        val end = scanner.nextLine()
+
+        addOffer(station, discount, start, end)
     }
     fun adminLogin() {
         print("Username: ")

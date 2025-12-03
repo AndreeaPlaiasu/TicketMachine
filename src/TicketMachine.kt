@@ -28,8 +28,11 @@ class TicketMachine {
     fun sellTicket(destination: Destination, type: String, money: Double): Ticket? {
         val price = calculatePrice(destination, type)
         return if (money >= price) {
+            val change = money - price
             destination.increaseSales()
             totalTakings += price
+            println("Ticket purchased successfully!")
+            println("Change returned: £${"%.2f".format(change)}")
             Ticket(origin, destination.name, price, type)
         } else {
             println("Not enough money! You need £${"%.2f".format(price - money)} more.")
