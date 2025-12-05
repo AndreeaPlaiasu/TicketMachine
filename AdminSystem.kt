@@ -19,3 +19,21 @@ class AdminSystem {
             }
         }
     }
+
+    private fun viewAllDestinations() {
+        println("\n=== All Destinations ===")
+        println("-".repeat(80))
+        println("%-5s %-20s %-15s %-15s %-10s".format("No.", "Station Name", "Single Price", "Return Price", "Sales"))
+        println("-".repeat(80))
+
+        DestinationData.destinations.forEachIndexed { index, dest ->
+            println("%-5d %-20s £%-14.2f £%-14.2f %-10d".format(
+                index + 1,
+                dest.name,
+                dest.singlePrice,
+                dest.returnPrice,
+                dest.sales
+            ))
+        }
+        println("-".repeat(80))
+    }
