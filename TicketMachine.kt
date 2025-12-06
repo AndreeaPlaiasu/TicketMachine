@@ -1,46 +1,39 @@
-package ticketmachine
+class TicketMachine {
 
-class TicketMachine(
-    private val catalog: CatalogRepository,
-    private val pricing: PricingService,
-    private val origin: Station
-) {
-    var currentBalance: Int = 0
+    private val origin = "Southampton Central"
 
-    fun showDestinations() {
-        println("Available Destinations:")
-        catalog.stations.forEach { station ->
-            println("${station.name} - Single: ${station.singlePricePence / 100}£, Return: ${station.returnPricePence / 100}£")
+    private val destinations = mutableListOf(
+        Destination("London Waterloo", 35.50, 60.00),
+        Destination("Bournemouth", 12.20, 20.00),
+        Destination("Winchester", 8.00, 14.50)
+    )
+
+    var totalTakings = 0.0
+
+    fun listDestinations() {
+        println("Available destinations:")
+        for (d in destinations) {
+            println("- ${d.name}: Single £${d.singlePrice}, Return £${d.returnPrice}")
         }
     }
 
-    fun insertMoney(amountPence: Int) {
-        currentBalance += amountPence
-        println("Inserted: ${amountPence / 100}£. Current balance: ${currentBalance / 100}£")
+    fun searchDestination(name: String): Destination? {
+        return destinations.find { it.name.equals(name, ignoreCase = true) }
     }
 
-    fun purchaseTicket(destinationId: Int, type: TicketType) {
-        val destination = catalog.stations.find { it.id == destinationId }
-        if (destination == null) {
-            println("Invalid destination ID.")
-            return
-        }
-
-        val price = pricing.calculatePrice(destination, type)
-        if (currentBalance < price) {
-            println("Insufficient balance. Please insert more money.")
-            return
-        }
-
-        currentBalance -= price
-        catalog.recordSale(origin.id, price)
-        val ticket = Ticket(origin, destination, type, price)
-        printTicket(ticket)
+    fun calculatePrice(destination: Destination, type: String): Double {
+        return if (type.equals("return", ignoreCase = true)) destination.returnPrice else destination.singlePrice
     }
 
-    private fun printTicket(ticket: Ticket) {
-        println("Ticket purchased:")
-        println("From: ${ticket.origin.name} To: ${ticket.destination.name}")
-        println("Type: ${ticket.type}, Price: ${ticket.pricePence / 100}£")
+    fun sellTicket(destination: Destination, type: String, money: Double): Ticket? {
+        val price = calculatePrice(destination, type)
+        return if (money >= price) {
+            destination.increaseSales()
+            totalTakings += price
+            Ticket(origin, destination.name, price, type)
+        } else {
+            println("Not enough money! You need £${"%.2f".format(price - money)} more.")
+            null
+        }
     }
 }
