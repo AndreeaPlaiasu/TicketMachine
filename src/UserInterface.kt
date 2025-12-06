@@ -24,6 +24,7 @@ class UserInterface(private val machine: TicketMachine) {
 
         print("Insert money: £")
         val money = scanner.nextDouble()
+        scanner.nextLine()
 
         val ticket = machine.sellTicket(destination, type, money)
         if (ticket != null) {
@@ -44,8 +45,8 @@ class UserInterface(private val machine: TicketMachine) {
             when (scanner.nextLine().trim()) {
                 "1" -> viewOffers()
                 "2" -> addOfferMenu()
-              /*  "3" -> searchOfferMenu()
-                "4" -> deleteOfferMenu()*/
+                "3" -> searchOfferMenu()
+                "4" -> deleteOfferMenu()
                 "5" -> return
                 else -> println("Invalid option.")
             }
@@ -76,6 +77,18 @@ class UserInterface(private val machine: TicketMachine) {
         } else {
             println("Invalid credentials.")
         }
+    }
+
+    fun searchOfferMenu() {
+        print("Enter station to search: ")
+        val station = scanner.nextLine()
+        searchOffers(station)
+    }
+
+    fun deleteOfferMenu() {
+        print("Enter Offer ID to delete: ")
+        val id = scanner.nextLine().toInt()
+        deleteOffer(id)
     }
 
 }
